@@ -32,7 +32,7 @@ public class Game extends JPanel implements Runnable {
     public static final int HEIGHT = 720;
     private static final int SCALE = 1;
 
-    public static final int BUILD = 1;
+    public static final int BUILD = 2;
 
     public int frames, ticks;
 

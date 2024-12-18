@@ -107,17 +107,17 @@ public class AnimatronicLogic {
             bonnie.buffAI();
             aiBuff1 = true;
         }
-//        if (NightLogic.getHour().equals("3AM") && !aiBuff2) {
-//            bonnie.buffAI();
-//            chica.buffAI();
-//            foxy.buffAI();
-//            aiBuff1 = true;
-//        }
+        if (NightLogic.getHour().equals("3AM") && !aiBuff2) {
+            bonnie.buffAI();
+            chica.buffAI();
+            foxy.buffAI();
+            aiBuff2 = true;
+        }
         if (NightLogic.getHour().equals("4AM") && !aiBuff3) {
             bonnie.buffAI();
             chica.buffAI();
             foxy.buffAI();
-            aiBuff1 = true;
+            aiBuff3 = true;
         }
 
     }

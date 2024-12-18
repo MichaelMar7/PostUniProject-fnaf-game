@@ -11,8 +11,8 @@ public class OfficeLogic {
 
     private static boolean blackout = false;
 
-    private static final int powerConsumption1 = 6;
-    private static final int powerConsumption2 = 5;
+    private static final int powerConsumption1 = 10;
+    private static final int powerConsumption2 = 6;
     private static final int powerConsumption3 = 4;
     private static final int powerConsumption4 = 3;
     private static final double powerConsumption5 = 2.5;

@@ -22,19 +22,19 @@ public class GameLogic {
 
         switch (gameState) {
             case PLAY:
-                updateNight(game);
+                updateNight();
                 break;
             case INTRO:
-                updateIntro(game);
+                updateIntro();
                 break;
             case JUMPSCARE:
-                updateJumpscare(game);
+                updateJumpscare();
                 break;
             case GAMEOVER:
-                updateGameOver(game);
+                updateGameOver();
                 break;
             case WIN:
-                updateWin(game);
+                updateWin();
                 break;
         }
 
@@ -82,7 +82,7 @@ public class GameLogic {
 
     }
 
-    private static void updateNight(Game game) {
+    private static void updateNight() {
 
         AnimatronicLogic.update();
         NightLogic.update();
@@ -91,11 +91,9 @@ public class GameLogic {
 
         MessageHandler.update();
 
-//        NightLogic.speedUpCounter(game.getKeyHandler());
-
     }
 
-    private static void updateIntro(Game game) {
+    private static void updateIntro() {
 
         introCounter++;
 
@@ -107,7 +105,7 @@ public class GameLogic {
 
     }
 
-    private static void updateJumpscare(Game game) {
+    private static void updateJumpscare() {
 
         jumpscareCounter++;
 
@@ -119,7 +117,9 @@ public class GameLogic {
 
     }
 
-    private static void updateGameOver(Game game) {
+    private static void updateGameOver() {
+
+        MessageHandler.update();
 
         gameoverCounter++;
 
@@ -131,7 +131,9 @@ public class GameLogic {
 
     }
 
-    private static void updateWin(Game game) {
+    private static void updateWin() {
+
+        MessageHandler.update();
 
         winCounter++;
 
