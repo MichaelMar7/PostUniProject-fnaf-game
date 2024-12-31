@@ -1,6 +1,7 @@
 package gui.cam;
 
 import gui.GUI;
+import util.CameraLogic;
 import util.MessageHandler;
 
 import java.awt.*;
@@ -14,9 +15,10 @@ public class MessagesGUI extends GUI {
     @Override
     public void render(Graphics2D g2, Rectangle camera, int scale) {
 
-        int y = 640;
+        int y = 560;
 
-        g2.setColor(Color.BLACK);
+        g2.setColor(Color.WHITE);
+
         g2.setFont(new Font("Arial", Font.PLAIN, 24));
 
         for (int i = 0; i < MessageHandler.getNumberOfMessages(); i++) {

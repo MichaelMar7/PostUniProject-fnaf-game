@@ -35,6 +35,8 @@ public class Ani_PirateFoxy extends Animatronic {
         runningCounter = 0;
         cam2AChecked = false;
 
+        currentCam = new CamNode("cam1C");
+
     }
 
     @Override
@@ -57,7 +59,7 @@ public class Ani_PirateFoxy extends Animatronic {
         if (phase >= 4) {
 
             // check if player looks at cam 2a (causes foxy running animation to play)
-            if (CameraLogic.getCurrentCam().equals("cam2A") && CameraLogic.getCamStatus() && !cam2AChecked) {
+            if (CameraLogic.getCurrentCam().equals(CamNum.CAM2A) && CameraLogic.getCamStatus() && !cam2AChecked) {
 
                 MessageHandler.addMessage(getName() + " is running down the hallway!");
                 cam2AChecked = true;

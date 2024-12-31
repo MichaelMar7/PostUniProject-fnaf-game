@@ -4,8 +4,6 @@ import gui.GUIButton;
 import main.Game;
 import util.GameLogic;
 import util.GameState;
-import util.NightLogic;
-import util.OfficeLogic;
 
 import java.awt.*;
 
@@ -23,6 +21,9 @@ public class TestUIText extends GUIButton {
 
     @Override
     public void render(Graphics2D g2, Rectangle camera, int scale) {
+
+        if (GameLogic.compareGameState(GameState.PLAY))
+            g2.setColor(Color.WHITE);
 
         g2.setFont(font);
         g2.drawString("Frames: "+game.frames, 20, 32);

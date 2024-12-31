@@ -2,8 +2,6 @@ package entity.animatronic;
 
 import util.AnimatronicLogic;
 import util.GameLogic;
-import util.GameState;
-import util.MessageHandler;
 
 import java.util.Random;
 
@@ -20,7 +18,7 @@ public abstract class Animatronic {
 
         if (moveOp <= ai) {
 
-            if (currentCam.getName().equals("office")) {
+            if (isAttacking()) {
 
                 if (attack()) {
 
@@ -43,7 +41,7 @@ public abstract class Animatronic {
 
     public void buffAI() { ai++; }
 
-    public boolean isAttacking() { return currentCam.getName().equals("office"); }
+    public boolean isAttacking() { return currentCam.getCamNum().equals(CamNum.OFFICE); }
 
     public CamNode getCurrentCam() { return currentCam; }
 

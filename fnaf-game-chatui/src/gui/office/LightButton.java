@@ -28,15 +28,19 @@ public class LightButton extends GUIButton {
     @Override
     public void render(Graphics2D g2, Rectangle camera, int scale) {
 
-        g2.setColor(colour);
-        g2.fillRect(area.x, area.y, area.width, area.height);
+        if (!OfficeLogic.getBlackout()) {
 
-        g2.setColor(Color.BLACK);
-        g2.setFont(new Font("Arial", Font.PLAIN, 16));
-        int textLength = (int) g2.getFontMetrics().getStringBounds("Light", g2).getWidth();
-        g2.drawString("Light", area.x+(area.width-textLength)/2, area.y+(area.height/2)+6);
+            g2.setColor(colour);
+            g2.fillRect(area.x, area.y, area.width, area.height);
 
-        g2.setColor(Color.BLACK);
+            g2.setColor(Color.BLACK);
+            g2.setFont(new Font("Arial", Font.PLAIN, 16));
+            int textLength = (int) g2.getFontMetrics().getStringBounds("Light", g2).getWidth();
+            g2.drawString("Light", area.x+(area.width-textLength)/2, area.y+(area.height/2)+6);
+
+            g2.setColor(Color.BLACK);
+
+        }
 
     }
 
@@ -63,6 +67,12 @@ public class LightButton extends GUIButton {
                 AnimatronicLogic.checkDoor(false);
 
         }
+
+    }
+
+    public void updateButtonPosition(int x) {
+
+        area.x += x;
 
     }
 

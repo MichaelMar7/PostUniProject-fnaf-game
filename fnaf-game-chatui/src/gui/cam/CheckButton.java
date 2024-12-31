@@ -45,7 +45,7 @@ public class CheckButton extends GUIButton {
     public void buttonClickAction() {
 
         if (CameraLogic.getCamStatus())
-            AnimatronicLogic.checkAnimatronicOnCam(CameraLogic.getCurrentCam());
+            AnimatronicLogic.checkAnimatronicOnCamMessage(CameraLogic.getCurrentCam());
 
     }
 

@@ -1,5 +1,6 @@
 package gui.cam;
 
+import entity.animatronic.CamNum;
 import gui.GUIButton;
 import main.Game;
 import util.CameraLogic;
@@ -8,10 +9,10 @@ import java.awt.*;
 
 public class CamButton extends GUIButton {
 
-    private String name;
+    private CamNum name;
     private Color colour;
 
-    public CamButton(String name, Rectangle area) {
+    public CamButton(CamNum name, Rectangle area) {
 
         super(null, area, false);
 
@@ -28,8 +29,8 @@ public class CamButton extends GUIButton {
         g2.setColor(new Color(200, 200, 200));
         g2.drawRect(area.x, area.y, area.width, area.height);
 
-        String cam = getName().substring(0,3).toUpperCase();
-        String camNum = getName().substring(3);
+        String cam = getName().toString().substring(0,3);
+        String camNum = getName().toString().substring(3);
 
         g2.setColor(Color.WHITE);
         g2.setFont(new Font("Arial", Font.BOLD, 16));
@@ -58,6 +59,6 @@ public class CamButton extends GUIButton {
 
     }
 
-    public String getName() { return name; }
+    public CamNum getName() { return name; }
 
 }

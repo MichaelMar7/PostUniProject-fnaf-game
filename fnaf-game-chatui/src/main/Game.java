@@ -32,7 +32,7 @@ public class Game extends JPanel implements Runnable {
     public static final int HEIGHT = 720;
     private static final int SCALE = 1;
 
-    public static final int BUILD = 2;
+    public static final int BUILD = 3;
 
     public int frames, ticks;
 
@@ -171,24 +171,20 @@ public class Game extends JPanel implements Runnable {
 
     private void generateEntities() {
 
-        entities.add(new GUI(new GUIButton[] {new TestUIText(this)}, 0, 0, true));
-        entities.add(new OfficeGUI());
         entities.add(new CameraGUI());
-        entities.add(new MessagesGUI());
-        entities.add(new MenuGUI());
+        entities.add(new OfficeGUI());
         entities.add(new IntroGUI());
         entities.add(new JumpscareGUI());
         entities.add(new GameOverGUI());
         entities.add(new WinGUI());
+        entities.add(new MenuGUI());
+        entities.add(new GUI(new GUIButton[] {new TestUIText(this)}, 0, 0, true));
+        //entities.add(new MessagesGUI());
 
     }
 
 
-    public void generateTestEntities() {
-
-//        entities.add(new TestRectangle());
-
-    }
+    public void generateTestEntities() {}
 
     public void generateTestImages() {}
 

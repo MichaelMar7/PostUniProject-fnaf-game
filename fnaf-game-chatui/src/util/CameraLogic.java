@@ -1,20 +1,22 @@
 package util;
 
+import entity.animatronic.CamNum;
+
 public class CameraLogic {
 
     private static boolean camOn = false;
-    private static String currentCam = "cam1A";
+    private static CamNum currentCam = CamNum.CAM1A;
 
     static void setUpCamera() {
 
         camOn = false;
-        currentCam = "cam1A";
+        currentCam = CamNum.CAM1A;
 
     }
 
     public static boolean getCamStatus() { return camOn; }
 
-    public static String getCurrentCam() { return currentCam; }
+    public static CamNum getCurrentCam() { return currentCam; }
 
     public static void changeCamStatus() {
 
@@ -32,6 +34,6 @@ public class CameraLogic {
 
     }
 
-    public static void changeCam(String newCam) { currentCam = newCam; }
+    public static void changeCam(CamNum newCam) { currentCam = newCam; }
 
 }

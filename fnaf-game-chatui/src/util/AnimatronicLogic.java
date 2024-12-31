@@ -7,7 +7,8 @@ import java.util.Random;
 
 public class AnimatronicLogic {
 
-    static Animatronic bonnie, chica, foxy, freddy;
+    private static Animatronic bonnie, chica, foxy, freddy;
+    private static boolean bonnieOnCam, chicaOnCam, freddyOnCam;
     private static Animatronic jumpscare = null;
 
     private static final int bonnieMoveInterval = 248; // 298
@@ -54,6 +55,10 @@ public class AnimatronicLogic {
                 setAI(10, 12, 16, 0);
                 break;
         }
+
+        bonnieOnCam = false;
+        chicaOnCam = false;
+        freddyOnCam = false;
 
         blackoutCountdown = 0;
         blackoutPhase = 1;
@@ -197,23 +202,27 @@ public class AnimatronicLogic {
     public static int getFoxyInterval() { return foxyMoveInterval; }
 
     // for text based fnaf
-    public static void checkAnimatronicOnCam(String cam) {
+    public static void checkAnimatronicOnCamMessage(CamNum cam) {
 
-        if (!cam.equals("cam6")) {
-            if (bonnie.getCurrentCam().getName().equals(cam))
-                MessageHandler.addMessage(bonnie.getName() + " is on "+cam.toUpperCase()+"!");
-            if (chica.getCurrentCam().getName().equals(cam))
-                MessageHandler.addMessage(chica.getName() + " is on "+cam.toUpperCase()+"!");
-            if (freddy.getCurrentCam().getName().equals(cam))
-                MessageHandler.addMessage(freddy.getName() + " is on "+cam.toUpperCase()+"!");
+        String currentCam = cam.toString();
+
+        if (!cam.equals(CamNum.CAM6)) {
+
+            if (bonnie.getCurrentCam().getCamNum().equals(cam))
+                MessageHandler.addMessage(bonnie.getName() + " is in the "+bonnie.getCurrentCam().getCamName()+" ("+currentCam+")!");
+            if (chica.getCurrentCam().getCamNum().equals(cam))
+                MessageHandler.addMessage(chica.getName() + " is in the "+chica.getCurrentCam().getCamName()+" ("+currentCam+")!");
+            if (freddy.getCurrentCam().getCamNum().equals(cam))
+                MessageHandler.addMessage(freddy.getName() + " is in the "+freddy.getCurrentCam().getCamName()+" ("+currentCam+")!");
+
         }
 
-        if (cam.equals("cam1C")) {
+        if (cam.equals(CamNum.CAM1C)) {
 
             if (foxy.getPhase() == 2) {
-                MessageHandler.addMessage(foxy.getName() + " is on "+cam.toUpperCase()+"!");
+                MessageHandler.addMessage(foxy.getName() + " is in the "+foxy.getCurrentCam().getCamName()+" ("+currentCam+")!");
             } else if (foxy.getPhase() == 3) {
-                MessageHandler.addMessage(foxy.getName() + " is on "+cam.toUpperCase()+"!");
+                MessageHandler.addMessage(foxy.getName() + " is in the "+foxy.getCurrentCam().getCamName()+" ("+currentCam+")!");
                 MessageHandler.addMessage("...and it seems he's about to leave!");
             } else if (foxy.getPhase() == 4) {
                 MessageHandler.addMessage(foxy.getName() + " is gone...");
@@ -221,27 +230,69 @@ public class AnimatronicLogic {
 
         }
 
-        if (cam.equals("cam6")) {
+        if (cam.equals(CamNum.CAM6)) {
 
             MessageHandler.addMessage("This camera is disabled.");
-            if (chica.getCurrentCam().getName().equals("cam6")) {
+            if (chica.getCurrentCam().getCamNum().equals(CamNum.CAM6)) {
                 MessageHandler.addMessage("You hear some rustling in the kitchen...");
             }
 
         }
 
-        if (foxy.getPhase() == 4 && cam.equals("cam2A"))
-            MessageHandler.addMessage(foxy.getName() + " is running down the hallway!");
+        if (foxy.getPhase() == 4 && cam.equals(CamNum.CAM2A))
+            MessageHandler.addMessage(foxy.getName() + " is running down the West Hallway!");
 
     }
 
-    // for text based fnaf
+    public static void checkAnimatronicOnCam(CamNum cam) {
+
+        if (!cam.equals(CamNum.CAM6)) {
+
+            if (bonnie.getCurrentCam().getCamNum().equals(cam)) {
+                bonnieOnCam = true;
+            } else {
+                bonnieOnCam = false;
+            }
+
+            if (chica.getCurrentCam().getCamNum().equals(cam)) {
+                chicaOnCam = true;
+            } else {
+                chicaOnCam = false;
+            }
+
+            if (freddy.getCurrentCam().getCamNum().equals(cam)) {
+                freddyOnCam = true;
+            } else {
+                freddyOnCam = false;
+            }
+
+        }
+
+    }
+
     public static void checkDoor(boolean left) {
 
-        if (bonnie != null && bonnie.isAttacking() && left)
+        if (bonnie != null && bonnie.isAttacking() && left) {
             MessageHandler.addMessage(bonnie.getName()+" is at the left door!");
-        if (chica != null && chica.isAttacking() && !left)
+        }
+
+        if (chica != null && chica.isAttacking() && !left) {
             MessageHandler.addMessage(chica.getName()+" is at the right door!");
+        }
+
+    }
+
+    public static boolean checkDoorBool(boolean left) {
+
+        if (bonnie != null && bonnie.isAttacking() && left) {
+            return true;
+        }
+
+        if (chica != null && chica.isAttacking() && !left) {
+            return true;
+        }
+
+        return false;
 
     }
 
@@ -257,5 +308,11 @@ public class AnimatronicLogic {
         return jumpscare.getName();
 
     }
+
+    public static boolean getBonnieOnCam() { return bonnieOnCam; }
+    public static boolean getChicaOnCam() { return chicaOnCam; }
+    public static boolean getFreddyOnCam() { return freddyOnCam; }
+    public static int getFoxyPhase() { return foxy.getPhase(); }
+    public static int getBlackoutPhase() { return blackoutPhase; }
 
 }

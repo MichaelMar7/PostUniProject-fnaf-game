@@ -2,10 +2,7 @@ package gui.office;
 
 import gui.GUIButton;
 import main.Game;
-import util.GameLogic;
-import util.GameState;
-import util.NightLogic;
-import util.OfficeLogic;
+import util.*;
 
 import java.awt.*;
 
@@ -23,9 +20,9 @@ public class NightUIText extends GUIButton {
     public void render(Graphics2D g2, Rectangle camera, int scale) {
 
         g2.setFont(font);
-        g2.setColor(Color.BLACK);
+        g2.setColor(Color.WHITE);
 
-        if (GameLogic.getGameState() == GameState.PLAY) {
+        if (GameLogic.getGameState() == GameState.PLAY && !OfficeLogic.getBlackout()) {
             g2.drawString("Hour: "+ NightLogic.getHour(), 1080, 60);
 
             g2.setFont(new Font("Arial", Font.PLAIN, 24));
@@ -65,11 +62,6 @@ public class NightUIText extends GUIButton {
         if (GameLogic.getGameState() == GameState.WIN) {
             g2.drawString("6AM!", 1120, 200);
         }
-
-    }
-
-    @Override
-    public void update(Game game) {
 
     }
 

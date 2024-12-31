@@ -22,15 +22,21 @@ public class CameraButton extends GUIButton {
     @Override
     public void render(Graphics2D g2, Rectangle camera, int scale) {
 
-        if (canHover)
-            g2.drawRect(area.x, area.y, area.width, area.height);
-        else
-            g2.fillRect(area.x, area.y, area.width, area.height);
+        if (!OfficeLogic.getBlackout()) {
 
-        g2.setColor(Color.WHITE);
-        g2.setFont(new Font("Arial", Font.PLAIN, 16));
-        int textLength = (int) g2.getFontMetrics().getStringBounds("Camera", g2).getWidth();
-        g2.drawString("Cameras", area.x+(area.width-textLength)/2, area.y+(area.height/2)+6);
+            g2.setColor(Color.GRAY);
+
+            if (canHover)
+                g2.fillRect(area.x, area.y, area.width, area.height);
+            else
+                g2.drawRect(area.x, area.y, area.width, area.height);
+
+            g2.setColor(Color.WHITE);
+            g2.setFont(new Font("Arial", Font.PLAIN, 16));
+            int textLength = (int) g2.getFontMetrics().getStringBounds("Camera", g2).getWidth();
+            g2.drawString("Cameras", area.x+(area.width-textLength)/2, area.y+(area.height/2)+6);
+
+        }
 
     }
 
